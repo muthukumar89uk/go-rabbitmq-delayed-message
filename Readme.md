@@ -1,27 +1,50 @@
-## To Run the rabbitMq server 
-  # latest RabbitMQ 3.13
-  - docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3.13-management
+# Golang RabbitMQ Delayed Messages
 
-## Steps to enable the delayed message scheduing plugin on rabbitMQ
-- *step 1:Download the plugin*
-    Download .ez file from https://github.com/rabbitmq/rabbitmq-delayed-message-exchange/releases 
+This repository contains a Go application that demonstrates the use of RabbitMQ with delayed messages.
 
-- *step 2: Add the plugin to the docker image*
-   RUN docker cp <path-to-the-downloaded-file> rabbitmq:/plugins/
+## Features
 
-- *step 3: Open the rabbimq bash*
-    RUN docker exec -it rabbitmq /bin/bash
+- Publish messages to RabbitMQ with a delay
+- Consume delayed messages from RabbitMQ
+- Configuration via environment variables
 
-- *step 4: Enable the plugin*
-   RUN rabbitmq-plugins enable rabbitmq_delayed_message_exchange
+## Requirements
 
-- *step 5: Exit from the bash*
-   RUN exit
+- Go 1.15 or higher
+- RabbitMQ with the [Delayed Message Plugin](https://github.com/rabbitmq/rabbitmq-delayed-message-exchange)
 
-- *step 6: Restart the rabbitmq container*
-   RUN docker restart rabbitmq
+## Getting Started
 
-- *step 7: Ensure the plugin is enabled or not*
-   RUN docker exec -it rabbitmq rabbitmq-plugins list
+### Installation
+
+1. Clone the repository:
+
+   ```
+   git clone https://github.com/muthukumar89uk/go-rabbitmq-delayed-message.git
+   ```
+Click here to directly [download it](https://github.com/muthukumar89uk/go-rabbitmq-delayed-message/zipball/master).
+
+### Install dependencies:
+
+          go mod tidy
+
+### Run the Application
+  1. Run the Server
+   
+       ```
+          go run .
+       ```   
+  2. The server will start on `http://localhost:8080`.
+
+## Run the RabbitMQ Server Using Docker
+  ### Latest RabbitMQ 3.13 
+  ```
+    docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3.13-management
+  ```
+
+## Refer
+  - [RabbitMQ](https://www.rabbitmq.com/) 
+  - [RabbitMQ Delayed Message Plugin](https://github.com/rabbitmq/rabbitmq-delayed-message-exchange) 
+  - [streadway/amqp](https://github.com/streadway/amqp)
 
    
